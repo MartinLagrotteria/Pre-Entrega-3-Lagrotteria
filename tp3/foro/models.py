@@ -18,6 +18,7 @@ class Usuario(models.Model):
 
 class Post(models.Model):
   usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+  topics = models.ForeignKey(Topics, on_delete=models.CASCADE)
   titulo = models.CharField(max_length=255)
   contenido = models.TextField()
   fecha_creacion = models.DateTimeField(auto_now_add=True)
