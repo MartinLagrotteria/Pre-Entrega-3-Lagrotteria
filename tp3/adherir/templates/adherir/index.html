@@ -9,9 +9,10 @@
 <body>
     {% include 'foro/header.html' %}
     <div class="content">
-        <form action="adherir" method="post">
+        <form action="" method="post">
             {% csrf_token %}
             {{ form }}
+            <input type="text" name="nombre">
             <input type="submit" value="Submit">
         </form>
     </div>    
