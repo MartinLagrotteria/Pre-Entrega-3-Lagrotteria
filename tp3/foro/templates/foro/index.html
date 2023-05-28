@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro del Curso</title>
+</head>
+<body>
+    
+    {% include 'foro/header.html' %}
+
+    <div class="content">
+        <a href="{% url 'adherir:adherir' %}">Crear un topico</a>
+        <a href="{% url 'borrar:borrar' %}">Borrar un topico</a>    
+        <ul>
+            {% for topic in topics %}
+            <li>
+                <a href="">{{ topic.nombre }}</a>
+            </li>
+            {% endfor %}
+            
+        </ul>
+
+    </div>
+    {% include 'foro/footer.html' %}
+
+
+</body>
+</html>
