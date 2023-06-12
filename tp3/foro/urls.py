@@ -4,6 +4,8 @@ from django.urls import include
 app_name = 'foro'
 
 urlpatterns = [
-    path('foro/', views.foro, name='foro'),
+    path('', views.foro, name='foro'),
+    
+    
 
 ]

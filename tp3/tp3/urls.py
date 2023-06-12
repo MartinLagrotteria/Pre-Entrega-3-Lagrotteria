@@ -31,6 +31,7 @@ urlpatterns = [
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
     #path('', include('foro.urls')),
     #path('', include('adherir.urls')),
@@ -38,5 +39,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('adherir/', include('adherir.urls', namespace='adherir')),
     path('borrar/', include('borrar.urls', namespace='borrar')),
-    path('foro/', include('foro.urls', namespace='foro'))
+    path('index/', include('foro.urls', namespace='foro')),
+    path('login/', include('foro.urls', namespace='login')),
+    
+    
 ]
