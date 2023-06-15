@@ -11,6 +11,7 @@ class Usuarios(models.Model):
   email = models.CharField(max_length=255)
   password = models.CharField(max_length=255)
   fecha_creacion = models.DateTimeField(auto_now_add=True)
+  admin = models.BooleanField(default=False)
   def __str__(self):
       return self.usuario
   

@@ -21,42 +21,26 @@
             </section>
         <section class='cuerpo'>
             <div>
-                {% if post %}
-                <div class="post">
-                    <h3>{{ post.titulo }}</h3>
-                    <p>{{ post.contenido }}</p>
-                </div>
-                {% for comentario in comentarios %}
-                    <div>{{ comentario.contenido }}</div>
-                    {% endfor %}
+                {% if login %}
+                <button><a href="{% url 'adherir:post' topic %}">Crear un Post </a></button>
                 {% endif %}
-                
+                <h1>{{ usuario }}</h1>
+                <ul>
+                    {% for post in posts %}
+                    <li>
+                        <a href="{% url 'posteo:posteo' post.id %}">{{ post.titulo }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-            {% if login %}
-            <form action="{% url 'adherir:comentario' post.id %}" method="post">
-                {% csrf_token %}
-                {{form.as_p}}
-                <div class="columna centrado">
-                    <div>
-                        <textarea name="contenido" cols="50" rows="5"></textarea>
-                    </div>
-                    <input type="submit" value="Comentar">
-                </div>
-            </form>
-            {% endif %}
         </section>
-
        
     </body>
     <footer>
             <section class="about">
                 <button><a href="">Sobre nosotros</a></button>
             </section>
-            
-  
             {% include 'foro/footer.html' %}   
-  
     </footer>
     
-        
 </html>

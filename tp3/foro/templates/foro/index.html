@@ -9,11 +9,11 @@
     <body>
         {% if login %}
         <section class="header" >
-            {% include 'foro/header_login&registro.html' %}
+            {% include 'foro/header_exit.html' %}
         </section>
         {% else %}
         <section class="header" >
-            {% include 'foro/header_exit.html' %}
+            {% include 'foro/header_login&registro.html' %}
         </section>
         {% endif %}
             <section class="head">
@@ -21,8 +21,10 @@
             </section>
         <section class='cuerpo'>
             <div>
-                <button><a href="{% url 'adherir:adherir' %}">Crear un Post</a></button>
-                <button><a href="{% url 'borrar:borrar' %}">Borrar un Post</a></button>    
+                {% if admin %}
+                <button><a href="{% url 'adherir:topic' %}">Crear un Topic</a></button>
+                <button><a href="{% url 'borrar:borrar' %}">Borrar un Topic</a></button>
+                {% endif %}
                 <ul>
                     {% for topic in topics %}
                     <li>

@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .models import Topics, Post, Usuarios
+from .models import Topics, Post, Comentario
 
 def foro(request):
   template = loader.get_template('foro/index.html')
@@ -8,16 +8,8 @@ def foro(request):
   
   context = {
     'topics': topics,
-    'login' : not(request.session.get('usuario') and request.session.get('password'))
-  }
-  return HttpResponse(template.render(context, request))
-
-def posteos(request, id_topic):
-  posts = Post.objects.filter(topics = id_topic).values()
-  template = loader.get_template('foro/post.html')
-  context = {
-     "posts" : posts,
-     'login' : not(request.session.get('usuario') and request.session.get('password'))
+    'login' : request.session.get('usuario') and request.session.get('password'),
+    'admin' : request.session.get('admin')
   }
   return HttpResponse(template.render(context, request))
 
@@ -27,4 +19,29 @@ def logout(request):
   if request.session.get('usuario') and request.session.get('password'):
       del request.session['usuario']
       del request.session['password']
+      del request.session['admin']
   return HttpResponse(template.render(context, request))
+
+def posteos(request, id_topic):
+  posts = Post.objects.filter(topics = id_topic).values()
+  template = loader.get_template('foro/topic.html')
+  context = {
+    'topic' : id_topic,
+     "posts" : posts,
+     'login' : request.session.get('usuario') and request.session.get('password'),
+     'admin' : request.session.get('admin')
+  }
+  return HttpResponse(template.render(context, request))
+
+def post(request, id_post):
+  post = Post.objects.get(id = id_post)
+  comentarios = Comentario.objects.filter(post = post).values()
+  template = loader.get_template('foro/post.html')
+  context = {
+    'login' : request.session.get('usuario') and request.session.get('password'),
+    'admin' : request.session.get('admin'),
+    'post' : post,
+    'comentarios' : comentarios
+  }
+  return HttpResponse(template.render(context, request))
+

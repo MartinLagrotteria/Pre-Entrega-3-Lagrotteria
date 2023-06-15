@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from foro.models import Usuarios
 from django.template import loader
-  
-def comprobarUsuario(usuario:str,password:str, usuarios:Usuarios) -> bool:
-  return usuarios.filter(usuario=usuario,password=password).exists()
+from django.shortcuts import redirect
+def comprobarUsuario(usuario:str,password:str) -> bool:
+  return Usuarios.objects.filter(usuario=usuario,password=password).exists()
+def getAdmin(usuario:str) -> bool:
+  return Usuarios.objects.get(usuario=usuario).admin
 
 def login(request):
   context = {}
@@ -13,13 +15,13 @@ def login(request):
   template_error = loader.get_template('login/login_error.html')
   
   if request.method == 'POST':
-    usuarios = Usuarios.objects
     usuario = request.POST['usuario']
     password = request.POST['password']
-    if comprobarUsuario(usuario,password,usuarios):
+    if comprobarUsuario(usuario,password):
       request.session['usuario'] = usuario
       request.session['password'] = password
-      return HttpResponse(template_exito.render(context, request))
+      request.session['admin'] = getAdmin(usuario)
+      return HttpResponseRedirect('/index/')
     else:
       return HttpResponse(template_error.render(context, request))
   return HttpResponse(template.render(context, request))
