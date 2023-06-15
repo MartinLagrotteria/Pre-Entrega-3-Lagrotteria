@@ -21,12 +21,12 @@
             </section>
         <section class='cuerpo'>
             <div>
-                <button><a href="{% url 'adherir:adherir' %}">Crear una clase</a></button>
-                <button><a href="{% url 'borrar:borrar' %}">Borrar una clase</a></button>    
+                <button><a href="{% url 'adherir:adherir' %}">Crear un Post</a></button>
+                <button><a href="{% url 'borrar:borrar' %}">Borrar un Post</a></button>    
                 <ul>
                     {% for topic in topics %}
                     <li>
-                        <a href="">{{ topic.nombre }}</a>
+                        <a href="{% url 'posteos:posteos' topic.id %}">{{ topic.nombre }}</a>
                     </li>
                     {% endfor %}
                     
