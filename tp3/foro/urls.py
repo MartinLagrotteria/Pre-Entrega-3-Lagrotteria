@@ -5,7 +5,5 @@ app_name = 'foro'
 
 urlpatterns = [
     path('', views.foro, name='foro'),
-    
-    
-
+    path('logout/', views.logout, name='logout')
 ]

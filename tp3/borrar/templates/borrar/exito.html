@@ -1,4 +1,23 @@
-<h3>
-    Borrado con exito
-</h3>
-<a href="{% url 'foro:foro' %}">volver</a>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href="{% static 'css/styles.css' %}" type='text/css' />
+    <title>Document</title>
+</head>
+<body>
+    <section class="exito">
+        <h3>
+            Borrado con exito
+        </h3>
+        <a href="{% url 'foro:foro' %}">volver</a>
+
+    </section>
+    
+    
+    
+</body>
+
+</html>

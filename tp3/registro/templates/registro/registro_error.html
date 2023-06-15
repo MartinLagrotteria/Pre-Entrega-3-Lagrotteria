@@ -10,7 +10,11 @@
 <body>
     <section class="exito">
         <h3>
-            Cargado con exito
+            Hubo un error en el registro.
+            Pudo ser:
+            - nombre repetido
+            - contraseña incorrecta(mayusculas y minusculas, numeros y simbolos, mínimo 8 caracteres)
+            - email repetido
         </h3>
         <a href="{% url 'foro:foro' %}">volver</a>
 
@@ -21,6 +25,3 @@
 </body>
 
 </html>
-
-
-

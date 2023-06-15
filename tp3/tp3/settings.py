@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     "foro",
     "adherir",
     "borrar",
+    "registro",
+    "login",
+    
     
     
       
