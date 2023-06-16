@@ -38,7 +38,7 @@
                     <div class = "comentario">
                         <div class="columna centado">
                             <div class="max_with bordes mayuscula">
-                                <span>{{ comentario.usuario.usuario }}: </span>
+                                <img class = "perfil" src="{{usuario.perfil_imagen.url}}"><span>{{ comentario.usuario.usuario }}: </span>
                                 {% if comentario.usuario == usuario or admin %}
                                 
                                 <a class="borrar" href="{% url 'borrar:comentario' comentario.id %}"><img src="{% static '/assets/borrar.png' %}" height="30" width="30"></a>

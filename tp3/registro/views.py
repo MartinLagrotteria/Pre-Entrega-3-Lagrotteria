@@ -37,7 +37,8 @@ def comprobarEmail(email:str, usuarios) -> bool:
     return False
   else:
     return True
-  
+def comprobarImagen(avatar):
+    return avatar != None
 
 def registro(request):
   context = {}
@@ -51,28 +52,10 @@ def registro(request):
     password = request.POST['password']
     email = request.POST['email']
     avatar = request.FILES['avatar']
-    if comprobarEmail(email,usuarios) and comprobarPass(password) and comprobarUser(usuario,usuarios):
+    if comprobarEmail(email,usuarios) and comprobarPass(password) and comprobarUser(usuario,usuarios) and comprobarImagen(avatar):
       Usuarios(usuario=usuario,email=email,password=password, perfil_imagen = avatar).save()
       return HttpResponse(template_exito.render(context, request))
     else:
       return HttpResponse(template_error.render(context, request))
   
   return HttpResponse(template.render(context, request))
-
-'''
-def adherir(request):
-    template = loader.get_template('adherir/index.html')
-    template_exito = loader.get_template('adherir/exito.html')
-    topics = Topics.objects.all().values()
-    context = {
-    'topics': topics
-    }
-
-    if request.method == 'POST':
-        nombre = request.POST['nombre']
-        Topics(nombre=nombre).save()
-        
-        return HttpResponse(template_exito.render(context, request))
-    return HttpResponse(template.render(context, request))
-'''
- 

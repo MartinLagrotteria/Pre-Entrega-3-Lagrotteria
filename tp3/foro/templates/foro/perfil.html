@@ -27,17 +27,13 @@
                 <div class="columna centrado">
                         <h3>Posteos:</h3>
                         {% for post in posts %}
-                    <div class="posteos bordes mayuscula">
-                        <a class=" max_with" href="{% url 'posteo:posteo' post.id %}">{{ post.titulo }}</a>
-                        {% if post.usuario == usuario or admin %}
-                        
-                        
+                    <div class="posteos bordes mayuscula max_with">
+                        <a class="" href="{% url 'posteo:posteo' post.id %}">{{ post.titulo }}</a>
                         <a class="borrar" href="{% url 'borrar:post' post.id %}"><img src="{% static '/assets/borrar.png' %}" height="30" width="30"></a>
-                        {% endif %}
                     </div>
                 
-                <br>
-                {% endfor %}
+                    <br>
+                    {% endfor %}
                 </div>
                 
         
