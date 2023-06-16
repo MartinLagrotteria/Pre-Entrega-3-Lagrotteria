@@ -7,6 +7,7 @@
     </head>
 
     <body>
+        
         {% if login %}
         <section class="header" >
             {% include 'foro/header_exit.html' %}
@@ -17,26 +18,26 @@
         </section>
         {% endif %}
         <section class="head">
-            <h1>ArgChan</h1>
+            <a href="{% url 'adherir:avatar' %}"><img class = "perfil" src="{{usuario.perfil_imagen.url}}"></a><h1>{{usuario.usuario}}</h1>
         </section>
         <br>
         <section class='cuerpo'>
             <div class = "columna centrado">
-                {% if admin %}
-                <div>
-                    <button><a href="{% url 'adherir:topic' %}">Crear un Topic</a></button>
-                    <button><a href="{% url 'borrar:topic' %}">Borrar un Topic</a></button>
-                </div>
-                
-                {% endif %}
                 <br>
                 <div class="columna centrado">
-                        {% for topic in topics %}
-                            <a class="topic max_with" href="{% url 'posteos:posteos' topic.id %}">{{ topic.nombre }}</a>
-                            <br>
-                        {% endfor %}
+                        <h3>Posteos:</h3>
+                        {% for post in posts %}
+                    <div class="posteos bordes mayuscula">
+                        <a class=" max_with" href="{% url 'posteo:posteo' post.id %}">{{ post.titulo }}</a>
+                        {% if post.usuario == usuario or admin %}
                         
-                    </ul>
+                        
+                        <a class="borrar" href="{% url 'borrar:post' post.id %}"><img src="{% static '/assets/borrar.png' %}" height="30" width="30"></a>
+                        {% endif %}
+                    </div>
+                
+                <br>
+                {% endfor %}
                 </div>
                 
         

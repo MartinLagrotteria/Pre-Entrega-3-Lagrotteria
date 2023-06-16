@@ -78,3 +78,21 @@ def adherir_comentario(request, id_post):
             Comentario(usuario = Usuarios.objects.get(usuario = usuario, password = password) ,post = Post.objects.get(id=id_post), contenido=contenido).save()
             return HttpResponseRedirect('/post/'+str(id_post))
     return HttpResponseRedirect('/index/')
+
+def adherir_avatar(request):
+    usuario = request.session.get('usuario')
+    password = request.session.get('password')
+    if not(usuario and password):
+        return HttpResponseRedirect('/index/')
+    usuario = Usuarios.objects.get(usuario = usuario, password = password)
+    context = {
+        'usuario' : usuario
+    }
+    template = loader.get_template('adherir/cargarAvatar.html')
+    if request.method == 'POST':
+        avatar = request.FILES['avatar']
+        usuario.perfil_imagen = avatar
+        usuario.save()
+       
+        return HttpResponseRedirect('/index/')
+    return HttpResponse(template.render(context, request))

@@ -50,8 +50,9 @@ def registro(request):
     usuario = request.POST['usuario']
     password = request.POST['password']
     email = request.POST['email']
+    avatar = request.FILES['avatar']
     if comprobarEmail(email,usuarios) and comprobarPass(password) and comprobarUser(usuario,usuarios):
-      Usuarios(usuario=usuario,email=email,password=password).save()
+      Usuarios(usuario=usuario,email=email,password=password, perfil_imagen = avatar).save()
       return HttpResponse(template_exito.render(context, request))
     else:
       return HttpResponse(template_error.render(context, request))

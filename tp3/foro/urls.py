@@ -1,6 +1,6 @@
-from django.urls import path
+from django.urls import path,re_path
 from . import views
-from django.urls import include
+from django.views.generic import RedirectView
 app_name = 'foro'
 
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path('topic/<int:id_topic>/', views.posteos, name='posteos'),
     path('post/<int:id_post>/', views.post, name='posteo'),
     path('about/', views.about, name='about'),
+    path('perfil/', views.perfil, name='pefil'),
+    re_path("/volver", RedirectView.as_view(url='/index/')),
 ]

@@ -7,7 +7,7 @@
     </head>
 <body>
     <h1>Registro</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
         <div class="columna centrado">
@@ -23,6 +23,10 @@
             <div>
                 <span>Email:</span>
                 <input type="text" name="email">
+            </div>
+            <div>
+                <span>Pefil</span>
+                <input type="file"name="avatar">
             </div>
             
             <input type="submit" value="Registrarse">

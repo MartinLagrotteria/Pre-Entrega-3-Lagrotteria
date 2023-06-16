@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href="{% static 'css/styles.css' %}" type='text/css' />
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <br>
+        <div>
+            <span>Imagen actual:</span>
+            <img src="{{usuario.perfil_imagen.url}}" height="30" width="30">
+        </div>
+        
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="file"name="avatar">
+            <input type="submit" value="Entrar">
+        </form>
+    </section>
+</body>
+
+</html>

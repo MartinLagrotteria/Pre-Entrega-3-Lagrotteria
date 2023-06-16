@@ -59,3 +59,18 @@ def post(request, id_post):
   }
   return HttpResponse(template.render(context, request))
 
+
+def perfil(request):
+  usuario = False
+  if request.session.get('usuario') and request.session.get('password'):
+    usuario = Usuarios.objects.get(usuario = request.session.get('usuario'), password = request.session.get('password'))
+  if not(usuario):
+    return HttpResponseRedirect('/index/index/')
+  template = loader.get_template('foro/perfil.html')
+  posts = Post.objects.filter(usuario = usuario)
+  context = {
+    'login' : request.session.get('usuario') and request.session.get('password'),
+    'usuario':usuario,
+    'posts' : posts
+  }
+  return HttpResponse(template.render(context, request))

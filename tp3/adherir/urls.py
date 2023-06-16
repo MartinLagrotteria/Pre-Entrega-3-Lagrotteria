@@ -6,6 +6,7 @@ urlpatterns = [
     path('topic/', views.adherir_topic, name='topic'),
     path('post/<int:id_topic>/', views.adherir_post, name='post'),
     path('comentario/<int:id_post>/', views.adherir_comentario, name='comentario'),
+    path('avatar/', views.adherir_avatar, name='avatar'),
     re_path("index/", RedirectView.as_view(url='/index/')),
     re_path("post/<int:id_post>/", RedirectView.as_view(url='/post/')),
 ]

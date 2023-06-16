@@ -10,8 +10,9 @@ class Usuarios(models.Model):
   usuario = models.CharField(max_length=255)
   email = models.CharField(max_length=255)
   password = models.CharField(max_length=255)
+  perfil_imagen = models.ImageField(null=True, blank=True, upload_to = 'avatares/', default = 'avatares/borrar.png')
   fecha_creacion = models.DateTimeField(auto_now_add=True)
-  admin = models.BooleanField() 
+  admin = models.BooleanField(default=False) 
   def __str__(self):
       return self.usuario
   
