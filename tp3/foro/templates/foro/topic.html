@@ -5,8 +5,8 @@
         <title>Foro</title>
         <link rel='stylesheet' href="{% static 'css/styles.css' %}" type='text/css' />
     </head>
-
     <body>
+        {% load static %}
         {% if login %}
         <section class="header" >
             {% include 'foro/header_exit.html' %}
@@ -16,30 +16,37 @@
             {% include 'foro/header_login&registro.html' %}
         </section>
         {% endif %}
-            <section class="head">
-                <h1>Foro ArgChan</h1>
-            </section>
+        <section class="head">
+            <h1>ArgChan</h1>
+        </section>
+        <br>
         <section class='cuerpo'>
-            <div>
+            <div class="columna centrado">
                 {% if login %}
-                <button><a href="{% url 'adherir:post' topic %}">Crear un Post </a></button>
+                <div>
+                    <button><a href="{% url 'adherir:post' topic %}">Crear un Post </a></button>
+                </div>
                 {% endif %}
-                <h1>{{ usuario }}</h1>
-                <ul>
-                    {% for post in posts %}
-                    <li>
-                        <a href="{% url 'posteo:posteo' post.id %}">{{ post.titulo }}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <div class="columna centrado max_with">
+                {% for post in posts %}
+                    <div class="posteos bordes mayuscula">
+                        <a class=" max_with" href="{% url 'posteo:posteo' post.id %}">{{ post.titulo }}</a>
+                        {% if post.usuario == usuario or admin %}
+                        
+                        
+                        <a class="borrar" href="{% url 'borrar:post' post.id %}"><img src="{% static '/assets/borrar.png' %}" height="30" width="30"></a>
+                        {% endif %}
+                    </div>
+                
+                <br>
+                {% endfor %}
+                </div>
             </div>
         </section>
        
     </body>
     <footer>
-            <section class="about">
-                <button><a href="">Sobre nosotros</a></button>
-            </section>
+            
             {% include 'foro/footer.html' %}   
     </footer>
     

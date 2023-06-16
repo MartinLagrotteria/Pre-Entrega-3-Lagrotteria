@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+
 class Topics(models.Model):
   nombre = models.CharField(max_length=255)
   fecha_creacion = models.DateTimeField(auto_now_add=True)
@@ -11,7 +11,7 @@ class Usuarios(models.Model):
   email = models.CharField(max_length=255)
   password = models.CharField(max_length=255)
   fecha_creacion = models.DateTimeField(auto_now_add=True)
-  admin = models.BooleanField(default=False)
+  admin = models.BooleanField() 
   def __str__(self):
       return self.usuario
   
@@ -32,4 +32,3 @@ class Comentario(models.Model):
   fecha_creacion = models.DateTimeField(auto_now_add=True)
   def __str__(self):
       return self.contenido
-

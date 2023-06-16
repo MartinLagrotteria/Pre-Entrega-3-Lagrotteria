@@ -7,6 +7,7 @@
     </head>
 
     <body>
+        
         {% if login %}
         <section class="header" >
             {% include 'foro/header_exit.html' %}
@@ -16,23 +17,29 @@
             {% include 'foro/header_login&registro.html' %}
         </section>
         {% endif %}
-            <section class="head">
-                <h1>Foro ArgChan</h1>
-            </section>
+        <section class="head">
+            <h1>ArgChan</h1>
+        </section>
+        <br>
         <section class='cuerpo'>
-            <div>
+            <div class = "columna centrado">
                 {% if admin %}
-                <button><a href="{% url 'adherir:topic' %}">Crear un Topic</a></button>
-                <button><a href="{% url 'borrar:borrar' %}">Borrar un Topic</a></button>
+                <div>
+                    <button><a href="{% url 'adherir:topic' %}">Crear un Topic</a></button>
+                    <button><a href="{% url 'borrar:topic' %}">Borrar un Topic</a></button>
+                </div>
+                
                 {% endif %}
-                <ul>
-                    {% for topic in topics %}
-                    <li>
-                        <a href="{% url 'posteos:posteos' topic.id %}">{{ topic.nombre }}</a>
-                    </li>
-                    {% endfor %}
-                    
-                </ul>
+                <br>
+                <div class="columna centrado">
+                        {% for topic in topics %}
+                            <a class="topic max_with" href="{% url 'posteos:posteos' topic.id %}">{{ topic.nombre }}</a>
+                            <br>
+                        {% endfor %}
+                        
+                    </ul>
+                </div>
+                
         
             </div>
             
@@ -41,15 +48,10 @@
        
     </body>
     <footer>
-            <section class="about">
-                <button><a href="">Sobre nosotros</a></button>
-            </section>
             
-  
             {% include 'foro/footer.html' %}   
   
     </footer>
     
-        
-</html>
 
+</html>

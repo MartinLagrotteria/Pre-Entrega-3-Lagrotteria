@@ -7,6 +7,7 @@
     </head>
 
     <body>
+        {% load static %}
         {% if login %}
         <section class="header" >
             {% include 'foro/header_exit.html' %}
@@ -17,21 +18,42 @@
         </section>
         {% endif %}
             <section class="head">
-                <h1>Foro ArgChan</h1>
+                <h1>ArgChan</h1>
             </section>
         <section class='cuerpo'>
-            <div>
+            <div class = "columna centrado">
                 {% if post %}
                 <div class="post">
-                    <h3>{{ post.titulo }}</h3>
-                    <p>{{ post.contenido }}</p>
+                    <div class="columna centado">
+                        <h2>{{ post.titulo }}</h2>
+                        <p>{{ post.contenido }}</p>
+                    </div>
+                    
+                </div>
+                <br>
+                <div class="subtitulo bordes">
+                    <h3>Comentarios:</h3>
                 </div>
                 {% for comentario in comentarios %}
-                    <div>{{ comentario.contenido }}</div>
-                    {% endfor %}
+                    <div class = "comentario">
+                        <div class="columna centado">
+                            <div class="max_with bordes mayuscula">
+                                <span>{{ comentario.usuario.usuario }}: </span>
+                                {% if comentario.usuario == usuario or admin %}
+                                
+                                <a class="borrar" href="{% url 'borrar:comentario' comentario.id %}"><img src="{% static '/assets/borrar.png' %}" height="30" width="30"></a>
+                                {% endif %}
+                            </div>
+                            
+                            <p>{{ comentario.contenido }}</p>
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
                 {% endif %}
                 
             </div>
+            <br>
             {% if login %}
             <form action="{% url 'adherir:comentario' post.id %}" method="post">
                 {% csrf_token %}
@@ -49,12 +71,9 @@
        
     </body>
     <footer>
-            <section class="about">
-                <button><a href="">Sobre nosotros</a></button>
-            </section>
-            
+    
   
-            {% include 'foro/footer.html' %}   
+            {% include 'foro/footer.html' %}
   
     </footer>
     

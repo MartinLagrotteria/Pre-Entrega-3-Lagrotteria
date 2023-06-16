@@ -2,8 +2,10 @@
     width:100% ;height: 95vh;
 }
 body{
-    max-height: 100vh; background-color: rgba(0, 0, 0, 0.904);
-    color: blueviolet;
+    max-height: 100vh;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.904);
+    color: rgba(175, 175, 175);
 }
 .head{
     width:100% ;height: 5vh;
@@ -18,23 +20,13 @@ body{
     display: flex;
     justify-content: right;
     align-items: right;
-    color: blueviolet;
-}
-footer{
-    width:100% ;
-    height: 5vh;
-    display: left;
-    justify-content: left;
-    align-items: center;
-    color: blueviolet;
+    color: rgba(175, 175, 175);
 }
 .about{
     width:100% ;
     height: 5vh;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    color: blueviolet;
+    
+    
 }
 .exito{
     width:100% ;
@@ -44,17 +36,65 @@ footer{
     color: rgb(134, 0, 0);
     background-color: rgba(0, 0, 0, 0.904);
 }
-
-.columna {
+.columna{
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    overflow: auto;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
 }
 .centrado{
     align-items: center;
+}
+.post, .comentario, .topic, .posteos{
+    border: 2px solid rgb(74, 170, 54);
+    border-radius: 15px;
+    background-color: rgb(77, 122, 68);
+    padding: 10px;
+    margin-top: 2%;
+    width: 50%;
+    color: rgba(175, 175, 175);
+}
+.subtitulo{
+    width: 45%;
+}
+.bordes{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.mayuscula{
+    text-transform: capitalize;
+}
+.topic,.post,a,.posteos{
+    text-align: center;
+    text-decoration:none;
+    color: rgba(175, 175, 175);
+}
+.max_with{
+    width: 100%;
+}
+
+.topic:hover, .posteos:hover{
+    background-color: rgb(72, 95, 68);
+}
+.borrar{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    text-align: center;
+}
+.borrar:hover{
+    background-color: #a52a2a;
+}
+.comentario{
+    width: 50%;
+}
+html{
+    width: 100%;
+    height: 100%;
+}
+footer {
+    color: rgba(175, 175, 175);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
